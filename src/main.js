@@ -31,10 +31,58 @@ const undo = id('undo');
 const codeDisplay = id('code');
 const guesses = classs('guess');
 const guessDisplay = id('guess');
-const options = id('options');
+const resetBtn = id('reset');
 const gameOver = id('game-over-message');
 const guess = [];
 let guessesLeft, code;
+
+window.onkeypress = (event) => {
+    event.preventDefault();
+
+    switch (event.key.toLowerCase()) {
+        case 'enter':
+            checkGuess();
+            break;
+        case 'backspace':
+            undo.dispatchEvent(new Event('click'));
+            break;
+        case 'r':
+        case 'b':
+        case 'g':
+        case 'y':
+        case 'p':
+        case 'o':
+        case ' ':
+            if (guess.length < 4) {
+                const colorCode = event.key === ' ' ? '_' : event.key.toLowerCase();
+                guess.push(colorCode);
+                guessDisplay.children[guess.length - 1].style.fill = colors[colorCode];
+            }
+    }
+};
+
+input.onclick = (event) => {
+    if (guess.length < 4 && guessesLeft > 0 && event.target.nodeName === 'circle') {
+        const colorCode = event.target.getAttribute('data-code');
+        guess.push(colorCode);
+        guessDisplay.children[guess.length - 1].style.fill = colors[colorCode];
+    }
+};
+
+commit.onclick = () => {
+    checkGuess();
+};
+
+undo.onclick = () => {
+    if (guess.length) {
+        guessDisplay.children[guess.length - 1].style.fill = 'grey';
+        guess.pop();
+    }
+};
+
+resetBtn.onclick = resetBoard;
+
+startGame();
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -118,56 +166,3 @@ function resetBoard() {
     }
     startGame();
 }
-
-window.onkeypress = (event) => {
-    event.preventDefault();
-
-    switch (event.key.toLowerCase()) {
-        case 'enter':
-            checkGuess();
-            break;
-        case 'backspace':
-            undo.dispatchEvent(new Event('click'));
-            break;
-        case 'r':
-        case 'b':
-        case 'g':
-        case 'y':
-        case 'p':
-        case 'o':
-        case ' ':
-            if (guess.length < 4) {
-                const colorCode = event.key === ' ' ? '_' : event.key.toLowerCase();
-                guess.push(colorCode);
-                guessDisplay.children[guess.length - 1].style.fill = colors[colorCode];
-            }
-    }
-};
-
-input.onclick = (event) => {
-    if (guess.length < 4 && guessesLeft > 0 && event.target.nodeName === 'circle') {
-        const colorCode = event.target.getAttribute('data-code');
-        guess.push(colorCode);
-        guessDisplay.children[guess.length - 1].style.fill = colors[colorCode];
-    }
-};
-
-commit.onclick = () => {
-    checkGuess();
-};
-
-undo.onclick = () => {
-    if (guess.length) {
-        guessDisplay.children[guess.length - 1].style.fill = 'grey';
-        guess.pop();
-    }
-};
-
-options.onclick = ({ target: { id } }) => {
-    if (id === 'reset') resetBoard();
-    else if (id === 'switch') {
-        resetBoard();
-    }
-};
-
-startGame();
