@@ -1,0 +1,39 @@
+{
+    "tasks": {
+        "dev": "cd src && deno run --allow-net --allow-read=. https://deno.land/std@0.144.0/http/file_server.ts",
+        "build": "deno run --unstable --allow-read --allow-write --allow-run deno-tasks/build.js",
+        "deploy": "git stash --include-untracked && deno task build && git add docs/. && git commit --amend --no-edit && git push --all"
+    },
+    "lint": {
+        "files": {
+            "include": [
+                "src/"
+            ],
+            "exclude": [
+                "docs/"
+            ]
+        },
+        "rules": {
+            "exclude": [
+                "no-window-prefix"
+            ]
+        }
+    },
+    "fmt": {
+        "files": {
+            "include": [
+                "src/"
+            ],
+            "exclude": [
+                "src/manifest.json",
+                "docs/"
+            ]
+        },
+        "options": {
+            "lineWidth": 100,
+            "indentWidth": 4,
+            "singleQuote": true,
+            "proseWrap": "preserve"
+        }
+    }
+}

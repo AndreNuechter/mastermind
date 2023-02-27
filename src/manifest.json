@@ -1,0 +1,19 @@
+{
+    "name": "Nastermind",
+    "short_name": "Mastermind",
+    "start_url": "./",
+    "display": "standalone",
+    "theme_color": "#f5f5dc",
+    "orientation": "portrait",
+    "background_color": "#f5f5dc",
+    "icons": [{
+        "src": "./images/icons-192.png",
+        "type": "image/png",
+        "sizes": "192x192",
+        "purpose": "any maskable"
+    }, {
+        "src": "./images/icons-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+    }]
+}
