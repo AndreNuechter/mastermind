@@ -92,11 +92,9 @@ body {
   background: lightgrey;
   box-shadow: inset 1px 1px 0 darkgrey, inset 2px 2px 2px dimgrey, inset -1px -1px 0 white, inset -2px -2px 2px whitesmoke;
 }
-#options {
+#reset {
   text-align: center;
   margin: 1em auto;
-}
-#reset {
   cursor: pointer;
 }
 ul {

@@ -30,11 +30,11 @@ const commit = id('commit');
 const undo = id('undo');
 const codeDisplay = id('code');
 const guesses = classs('guess');
-const guess = [];
 const guessDisplay = id('guess');
 const options = id('options');
 const gameOver = id('game-over-message');
-let guessesLeft, code, role = 1;
+const guess = [];
+let guessesLeft, code;
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -119,15 +119,15 @@ function resetBoard() {
     startGame();
 }
 
-window.onkeypress = (e) => {
-    e.preventDefault();
-    switch (e.key.toLowerCase()) {
+window.onkeypress = (event) => {
+    event.preventDefault();
+
+    switch (event.key.toLowerCase()) {
         case 'enter':
             checkGuess();
             break;
         case 'backspace':
-            const event = new Event('click');
-            undo.dispatchEvent(event);
+            undo.dispatchEvent(new Event('click'));
             break;
         case 'r':
         case 'b':
@@ -137,16 +137,16 @@ window.onkeypress = (e) => {
         case 'o':
         case ' ':
             if (guess.length < 4) {
-                const colorCode = e.key === ' ' ? '_' : e.key.toLowerCase();
+                const colorCode = event.key === ' ' ? '_' : event.key.toLowerCase();
                 guess.push(colorCode);
                 guessDisplay.children[guess.length - 1].style.fill = colors[colorCode];
             }
     }
 };
 
-input.onclick = (e) => {
-    if (guess.length < 4 && guessesLeft > 0 && e.target.nodeName === 'circle') {
-        const colorCode = e.target.getAttribute('data-code');
+input.onclick = (event) => {
+    if (guess.length < 4 && guessesLeft > 0 && event.target.nodeName === 'circle') {
+        const colorCode = event.target.getAttribute('data-code');
         guess.push(colorCode);
         guessDisplay.children[guess.length - 1].style.fill = colors[colorCode];
     }
@@ -163,10 +163,9 @@ undo.onclick = () => {
     }
 };
 
-options.onclick = (e) => {
-    if (e.target.id === 'reset') resetBoard();
-    else if (e.target.id === 'switch') {
-        role *= -1;
+options.onclick = ({ target: { id } }) => {
+    if (id === 'reset') resetBoard();
+    else if (id === 'switch') {
         resetBoard();
     }
 };
