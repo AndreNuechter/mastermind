@@ -14,7 +14,6 @@ import {
 } from './js/dom-selections.js';
 import { answerColors, colorKeys, colors } from './js/constants.js';
 
-// TODO theme color
 // TODO icons
 // TODO reset per icon on right top side
 // TODO prevent scrolling on mobile
