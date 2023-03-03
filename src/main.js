@@ -12,11 +12,9 @@ import {
     resetBtn,
     undoBtn,
 } from './js/dom-selections.js';
-import { answerColors, colorKeys, colors } from './js/constants.js';
+import { answerColors, blankKey, colorKeys, colors } from './js/constants.js';
 
-// TODO reset per icon on right top side
 // TODO prevent scrolling on mobile
-// TODO pad guess
 // TODO implement roleswitching and Knuths alg
 
 const currentGuess = [];
@@ -43,7 +41,7 @@ window.onkeypress = (event) => {
         case 'o':
         case ' ':
             if (currentGuess.length < 4) {
-                const colorCode = key === ' ' ? '_' : key;
+                const colorCode = key === ' ' ? blankKey : key;
                 currentGuess.push(colorCode);
                 guessDisplay.children[currentGuess.length - 1].style.fill = colors[colorCode];
             }
@@ -62,7 +60,7 @@ commitBtn.onclick = checkGuess;
 
 undoBtn.onclick = () => {
     if (currentGuess.length) {
-        guessDisplay.children[currentGuess.length - 1].style.fill = colors['_'];
+        guessDisplay.children[currentGuess.length - 1].style.fill = colors[blankKey];
         currentGuess.pop();
     }
 };
@@ -88,9 +86,15 @@ function countColor(code, color) {
 }
 
 function checkGuess() {
-    if (currentGuess.length === 4 && guessesLeft > 0) {
+    if (guessesLeft > 0) {
         let answer = new Array(4);
         let blacks = 0;
+
+        // pad guess
+        while (currentGuess.length < 4) {
+            currentGuess.push(blankKey);
+        }
+
         // count correct guesses
         for (let i = 0; i < 4; i++) {
             if (currentGuess[i] === code[i]) {
@@ -110,7 +114,7 @@ function checkGuess() {
         displayAnswer(guesses[guessesLeft].children[1], answer);
         // clear guessdisplay and guess
         [...guessDisplay.children].forEach((child) =>
-            child.style.fill = colors['_']
+            child.style.fill = colors[blankKey]
         );
         currentGuess.length = 0;
         // check for end of game
@@ -144,7 +148,7 @@ function resetBoard() {
     gameOverModal.style.display = 'none';
     circles.forEach((circle) => {
         if (circle.parentNode !== colorSelect) {
-            circle.style.fill = colors['_'];
+            circle.style.fill = colors[blankKey];
         }
     });
     startGame();
