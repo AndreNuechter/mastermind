@@ -1,12 +1,13 @@
-@keyframes blinker {
-  50% {
-    color: lightgrey;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 body {
-  font-family: helvetica;
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+}
+
+body {
   background: #f9f9eb;
-  
+
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -22,7 +23,7 @@ body {
 }
 #colorInput circle {
   stroke: black;
-  cursor: pointer;  
+  cursor: pointer;
 }
 #inputControls {
   text-align: center;
@@ -42,7 +43,7 @@ body {
   box-shadow: inset 5px 5px 10px #f9f9eb, inset -5px -5px 10px #e8e8b0, 5px 5px 5px grey;
 }
 #code {
-  margin: auto;  
+  margin: auto;
   height: 9mm;
   width: 50%;
   background: grey;
@@ -51,7 +52,7 @@ body {
   box-shadow: inset 1px 1px 0 black, inset 2px 2px 2px dimgrey, inset -1px -1px 0 white, inset -2px -2px 2px lightgrey;
 }
 #guesses {
-  margin: 0 auto 5% auto;  
+  margin: 0 auto 5% auto;
   width: 80%;
   background: lightgrey;
   box-shadow: inset 2px 2px 2px whitesmoke, 2px 2px 2px #c3c3c3;
@@ -67,8 +68,8 @@ body {
 .guess {
   border-bottom: 1px solid white;
   display: flex;
-  justify-content: space-between;  
-  margin: 0 auto;  
+  justify-content: space-between;
+  margin: 0 auto;
   height: 9mm;
   width: 100%;
 }
@@ -86,7 +87,7 @@ body {
   border-bottom: none;
 }
 #guess {
-  margin: 1em auto;  
+  margin: 1em auto;
   height: 9mm;
   width: 50%;
   background: lightgrey;
@@ -98,7 +99,7 @@ body {
   cursor: pointer;
 }
 ul {
-  padding: 0; 
+  padding: 0;
 }
 li {
   list-style: none;
@@ -121,5 +122,10 @@ li {
   right: 0;
   top: 35%;
   margin: auto;
-  display: none;   
+  display: none;
+}
+@keyframes blinker {
+  50% {
+    color: lightgrey;
+  }
 }
