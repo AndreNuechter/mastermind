@@ -1,6 +1,6 @@
-import { classs, elmnts, id } from './helper-functions.js';
+import { classs, id } from './helper-functions.js';
 
-export const circles = elmnts('circle');
+export const circles = document.querySelectorAll('circle');
 export const colorSelect = id('colorInput');
 export const commitBtn = id('commit');
 export const undoBtn = id('undo');
