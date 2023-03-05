@@ -7,33 +7,50 @@ body {
 
 :root {
   --bg-color: #708090;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
+  margin: 0;
+  height: 100%;
   background: linear-gradient(var(--bg-color), lightgrey, white);
   user-select: none;
+  display: grid;
+  gap: 8px;
+  /* 8ch is enough for space for the buttons and 55mm is the boards width */
+  grid-template-columns: 8ch 55mm 8ch;
+  /* 20mm is enough space for the reset-btn and 115mm is the remainder of the board-height */
+  grid-template-rows: 20mm 115mm auto; 
+  grid-template-areas: 
+  ". board reset"
+  "commit board undo"
+  "colorselect colorselect colorselect"
+  ;
+  justify-content: center;
+  align-content: center;
 }
 #colorInput {
+  grid-area: colorselect;
   display: block;
-  width: 70mm;
-  height: 18mm;
-  margin: 0 auto;
+  width: 64mm;
+  height: 9mm;
+  margin: 4px auto;
 }
 #colorInput circle {
   stroke: black;
   cursor: pointer;
 }
-#inputControls {
+.control-input {
   text-align: center;
-}
-#inputControls span {
-  padding: 0 1em;
   cursor: pointer;
 }
 #board {
+  grid-area: board;
+  align-self: end;
+  margin: 0 auto;
   height: 135mm;
   width: 55mm;
-  margin: 1em auto;
   border: 1px solid #d3d3d3;
   background: #f5f5dc;
   display: flex;
@@ -91,10 +108,16 @@ body {
   background: lightgrey;
   box-shadow: inset 1px 1px 0 darkgrey, inset 2px 2px 2px dimgrey, inset -1px -1px 0 white, inset -2px -2px 2px whitesmoke;
 }
+#commit {
+  grid-area: commit;
+  align-self: end;
+}
+#undo {
+  grid-area: undo;
+  align-self: end;
+}
 #reset {
-  text-align: center;
-  margin: 8px auto 0;
-  cursor: pointer;
+  grid-area: reset;
 }
 ul {
   padding: 0;

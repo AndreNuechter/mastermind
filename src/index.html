@@ -22,7 +22,6 @@
       <circle cx="62%" cy="50%" r="8%" fill="grey"></circle>
       <circle cx="85%" cy="50%" r="8%" fill="grey"></circle>
     </svg>
-
     <div id="guesses">
       <div class="guess">
         <svg height="100%" width="100%" class="code">
@@ -165,7 +164,6 @@
         </svg>
       </div>
     </div>
-
     <svg id="guess">
       <circle cx="12%" cy="50%" r="8%" fill="grey"></circle>
       <circle cx="37%" cy="50%" r="8%" fill="grey"></circle>
@@ -173,9 +171,7 @@
       <circle cx="87%" cy="50%" r="8%" fill="grey"></circle>
     </svg>
   </div>
-
-  <p id="reset" title="Start a new game">Reset</p>
-
+  <span id="reset" class="control-input" title="Start a new game">Reset</span>
   <svg id="colorInput">
     <circle data-code="r" cx="7%" cy="50%" r="8%" fill="red"></circle>
     <circle data-code="b" cx="21%" cy="50%" r="8%" fill="blue"></circle>
@@ -185,12 +181,8 @@
     <circle data-code="o" cx="77%" cy="50%" r="8%" fill="orange"></circle>
     <circle data-code="_" cx="91%" cy="50%" r="8%" fill="grey"></circle>
   </svg>
-
-  <div id="inputControls">
-    <span id="commit" title="Try this guess">Commit</span>
-    <span id="undo" title="Remove last peg from guess">Undo</span>
-  </div>
-
+  <span id="commit" class="control-input" title="Try this guess">Commit</span>
+  <span id="undo" class="control-input" title="Remove last peg from guess">Undo</span>
   <div id="game-over-message"></div>
 </body>
 

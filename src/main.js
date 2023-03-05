@@ -14,7 +14,6 @@ import {
 } from './js/dom-selections.js';
 import { answerColors, blankKey, colorKeys, colors } from './js/constants.js';
 
-// TODO prevent scrolling on mobile
 // TODO implement roleswitching and Knuths alg
 
 const currentGuess = [];
