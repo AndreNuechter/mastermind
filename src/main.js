@@ -46,7 +46,6 @@ window.onkeypress = (event) => {
             }
     }
 };
-
 colorSelect.onclick = ({ target }) => {
     if (currentGuess.length < 4 && guessesLeft > 0 && target.nodeName === 'circle') {
         const colorCode = target.dataset.code;
@@ -54,17 +53,15 @@ colorSelect.onclick = ({ target }) => {
         guessDisplay.children[currentGuess.length - 1].style.fill = colors[colorCode];
     }
 };
-
 commitBtn.onclick = checkGuess;
-
 undoBtn.onclick = () => {
     if (currentGuess.length) {
         guessDisplay.children[currentGuess.length - 1].style.fill = colors[blankKey];
         currentGuess.pop();
     }
 };
-
 resetBtn.onclick = resetBoard;
+gameOverModal.onclick = resetBoard;
 
 startGame();
 
