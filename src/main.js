@@ -92,9 +92,9 @@ function checkGuess() {
         }
 
         // count correct guesses
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 4; i += 1) {
             if (currentGuess[i] === code[i]) {
-                blacks++;
+                blacks += 1;
             }
         }
         // count close-to-correct guesses
@@ -104,7 +104,7 @@ function checkGuess() {
         answer = answer.fill('b', 0, blacks);
         answer = answer.fill('w', blacks, blacks + whites);
         // detract one guess
-        guessesLeft--;
+        guessesLeft -= 1;
         // display guess and answer to it
         displayGuess(guesses[guessesLeft].children[0], currentGuess);
         displayAnswer(guesses[guessesLeft].children[1], answer);
@@ -128,13 +128,13 @@ function checkGuess() {
 }
 
 function displayGuess(display, code) {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i += 1) {
         display.children[i].style.fill = colors[code[i]];
     }
 }
 
 function displayAnswer(display, answer) {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i += 1) {
         display.children[i].style.fill = answerColors[answer[i]];
     }
 }

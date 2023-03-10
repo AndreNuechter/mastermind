@@ -18,9 +18,9 @@ body {
   background: linear-gradient(var(--bg-color), lightgrey, white);
   user-select: none;
   display: grid;
-  gap: 8px;
-  /* 8ch is enough for space for the buttons and 55mm is the boards width */
-  grid-template-columns: 8ch 55mm 8ch;
+  gap: 8px 16px;
+  /* 32px is enough for space for the buttons and 55mm is the board's width */
+  grid-template-columns: 32px 55mm 32px;
   /* 20mm is enough space for the reset-btn and 115mm is the remainder of the board-height */
   grid-template-rows: 20mm 115mm auto; 
   grid-template-areas: 
@@ -42,10 +42,7 @@ body {
   stroke: black;
   cursor: pointer;
 }
-.control-input {
-  text-align: center;
-  cursor: pointer;
-}
+
 #board {
   grid-area: board;
   align-self: end;
@@ -58,6 +55,7 @@ body {
   flex-direction: column;
   box-shadow: inset 5px 5px 10px #f9f9eb, inset -5px -5px 10px #e8e8b0, 5px 5px 5px grey;
 }
+
 #code {
   margin: auto;
   height: 9mm;
@@ -67,20 +65,24 @@ body {
   text-align: center;
   box-shadow: inset 1px 1px 0 black, inset 2px 2px 2px dimgrey, inset -1px -1px 0 white, inset -2px -2px 2px lightgrey;
 }
+
 #guesses {
   margin: 0 auto 5% auto;
   width: 80%;
   background: lightgrey;
   box-shadow: inset 2px 2px 2px whitesmoke, 2px 2px 2px #c3c3c3;
 }
+
 #code svg {
   height: 100%;
   width: 20%;
 }
+
 .answer svg {
   height: 100%;
   width: 100%;
 }
+
 .guess {
   border-bottom: 1px solid white;
   display: flex;
@@ -89,19 +91,23 @@ body {
   height: 9mm;
   width: 100%;
 }
+
 .code {
   height: 100%;
   width: 75%;
   padding-left: 5%;
 }
+
 .answer {
   border-left: 1px solid white;
   height: 100%;
   width: 19%;
 }
+
 .guess:last-child {
   border-bottom: none;
 }
+
 #guess {
   margin: 1em auto;
   height: 9mm;
@@ -109,23 +115,40 @@ body {
   background: lightgrey;
   box-shadow: inset 1px 1px 0 darkgrey, inset 2px 2px 2px dimgrey, inset -1px -1px 0 white, inset -2px -2px 2px whitesmoke;
 }
+
 #commit {
   grid-area: commit;
   align-self: end;
 }
+
 #undo {
   grid-area: undo;
   align-self: end;
 }
+
 #reset {
   grid-area: reset;
   align-self: center;
 }
+
 ul {
   padding: 0;
 }
+
 li {
   list-style: none;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke-width: 2;
+  stroke: black;
+}
+
+.control-input {
+  cursor: pointer;
 }
 
 #game-over-message {
