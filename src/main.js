@@ -90,11 +90,6 @@ function checkGuess() {
         // rm highlight from previous guess
         guesses[guessesLeft - 1].classList.remove('current');
 
-        // possibly highlight current guess
-        if (guessesLeft > 1) {
-            guesses[guessesLeft - 2].classList.add('current');
-        }
-
         // pad guess
         while (currentGuess.length < 4) {
             currentGuess.push(blankKey);
@@ -136,6 +131,9 @@ function checkGuess() {
             gameOverModal.textContent = 'BOOOM!!!';
             gameOverModal.style.display = 'block';
             displayGuess(codeDisplay, code);
+        } else {
+            // highlight next guess-row
+            guesses[guessesLeft - 1].classList.add('current');
         }
     }
 }
