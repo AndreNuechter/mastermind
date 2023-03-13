@@ -74,6 +74,7 @@ function createCode() {
 
 function startGame() {
     guessesLeft = guesses.length;
+    guesses[guessesLeft - 1].classList.add('current');
     code = createCode();
 }
 
@@ -86,6 +87,14 @@ function checkGuess() {
         let answer = new Array(4);
         let blacks = 0;
 
+        // rm highlight from previous guess
+        guesses[guessesLeft - 1].classList.remove('current');
+
+        // possibly highlight current guess
+        if (guessesLeft > 1) {
+            guesses[guessesLeft - 2].classList.add('current');
+        }
+
         // pad guess
         while (currentGuess.length < 4) {
             currentGuess.push(blankKey);
@@ -97,14 +106,17 @@ function checkGuess() {
                 blacks += 1;
             }
         }
+
         // count close-to-correct guesses
         const whites = Object.keys(colors).reduce((a, color) =>
             a + Math.min(countColor(currentGuess, color), countColor(code, color)), 0) - blacks;
+
         // assemble final answer
         answer = answer.fill('b', 0, blacks);
         answer = answer.fill('w', blacks, blacks + whites);
         // detract one guess
         guessesLeft -= 1;
+
         // display guess and answer to it
         displayGuess(guesses[guessesLeft].children[0], currentGuess);
         displayAnswer(guesses[guessesLeft].children[1], answer);
@@ -113,6 +125,7 @@ function checkGuess() {
             child.style.fill = colors[blankKey]
         );
         currentGuess.length = 0;
+
         // check for end of game
         if (answer.join('') === 'bbbb') {
             gameOverModal.textContent = 'Congratulations, you\'ve cracked the code';
