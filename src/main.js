@@ -15,6 +15,9 @@ import {
 import { answerColors, blankKey, colorKeys, colors } from './js/constants.js';
 
 // TODO implement roleswitching and Knuths alg
+// btn + icon to switch
+// logistics for entering and altering code
+// way to start a game
 
 const currentGuess = [];
 let guessesLeft;
